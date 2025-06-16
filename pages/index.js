@@ -1,14 +1,18 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from '../styles/Home.module.css';
 import ProductCard from '../components/ProductCard';
 
 // Simulação de dados dos produtos. Você pode buscar isso de um CMS no futuro.
 const products = [
-  { id: 1, name: 'Laço Clássico Gorgurão', price: 15.00, imageUrl: '/images/laco_modelo_1.png' },
-  { id: 2, name: 'Laço Boutique com Pérolas', price: 25.00, imageUrl: '/images/laco_modelo_2.jpeg' },
-  { id: 3, name: 'Tiara Confort Laço', price: 22.00, imageUrl: '/images/laco_modelo_3.jpeg' },
-  { id: 4, name: 'Kit RN (3 unidades)', price: 30.00, imageUrl: '/images/laco_modelo_4.jpeg' },
+  { id: 2, name: 'Laço Charme de Poá', price: 25.00, imageUrl: '/images/laco_modelo_2.jpeg' },
+  { id: 3, name: 'Laço Jardim Lilás', price: 22.00, imageUrl: '/images/laco_modelo_3.jpeg' },
+  { id: 4, name: 'Laço Girassol Sorridente', price: 30.00, imageUrl: '/images/laco_modelo_4.jpeg' },
+  { id: 4, name: 'Rabicó Laço Ouro e Mel', price: 30.00, imageUrl: '/images/laco_modelo_5.jpeg' },
+  { id: 4, name: 'Rabicó Gatinha Manhosa', price: 30.00, imageUrl: '/images/laco_modelo_6.jpeg' },
+  { id: 4, name: 'Rabicó Pompom Girassol', price: 30.00, imageUrl: '/images/laco_modelo_7.jpeg' },
+  { id: 4, name: 'Rabicó Doce Encontro', price: 30.00, imageUrl: '/images/laco_modelo_8.jpeg' },
 ];
 
 export default function Home() {
@@ -96,6 +100,36 @@ export default function Home() {
               Chamar no WhatsApp
             </motion.a>
         </section>
+
+        {/* Nova Seção Sobre Mim */}
+        <motion.section
+          className={styles.aboutSection}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <div className={styles.aboutContent}>
+            <div className={styles.aboutImageContainer}>
+              <Image
+                src="/images/foto_perfil.jpeg" // Adicione a foto em `public/images/foto_perfil.png`
+                alt="Foto da artesã dos laços"
+                width={150}
+                height={150}
+                className={styles.aboutPhoto}
+              />
+            </div>
+            <div className={styles.aboutText}>
+              <h2>Quem Faz</h2>
+              <p>
+                Olá! Eu sou a Tia B, a artesã apaixonada por trás de cada laço que você vê aqui. Desde criança, o artesanato é minha grande paixão. Comecei criando peças para a família e amigas, e o que era um hobby se transformou em um sonho realizado.
+              </p>
+              <p>
+                Cada laço é feito à mão, com muito carinho, dedicação e os melhores materiais, pensando sempre no conforto e na alegria de quem vai usar. Obrigada por apoiar o meu trabalho!
+              </p>
+            </div>
+          </div>
+        </motion.section>
 
         {/* Footer */}
         <footer className={styles.footer}>

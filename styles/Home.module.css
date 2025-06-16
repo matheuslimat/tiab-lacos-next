@@ -59,10 +59,63 @@
 
 /* Botão (estilizado no componente para reuso) */
 
+/* Seção Sobre Mim */
+.aboutSection {
+  padding: 80px 20px;
+  background-color: #FEF9F3; /* Um fundo suave para destacar a seção */
+}
+
+.aboutContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* Para responsividade em telas menores */
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.aboutImageContainer {
+  flex-shrink: 0; /* Impede que a imagem encolha */
+}
+
+.aboutPhoto {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #FFDAB9; /* Cor que combina com o header */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.aboutText {
+  flex: 1;
+  min-width: 300px; /* Garante que o texto não fique muito espremido */
+}
+
+.aboutText h2 {
+  font-size: 2.2rem;
+  margin-top: 0;
+  color: #424242;
+}
+
+.aboutText p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+}
+
 /* Footer */
 .footer {
   background-color: #424242;
   color: #FFFFFF;
   padding: 20px;
   margin-top: 0;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+  .aboutContent {
+    flex-direction: column;
+    text-align: center;
+  }
 }
