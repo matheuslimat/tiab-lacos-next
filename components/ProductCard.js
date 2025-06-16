@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
     return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
 
-  const whatsappLink = `https://wa.me/55SEUNUMERODOWHATSAPP?text=Olá!%20Gostaria%20de%20encomendar%20o%20${encodeURIComponent(product.name)}.`;
+  const whatsappLink = `https://wa.me/5521967280265?text=Olá!%20Gostaria%20de%20encomendar%20o%20${encodeURIComponent(product.name)}.`;
 
 
   return (
