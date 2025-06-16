@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from '../styles/Home.module.css';
 import ProductCard from '../components/ProductCard';
+import FallingBows from '../components/FallingBows';
 
 // Simulação de dados dos produtos. Você pode buscar isso de um CMS no futuro.
 const products = [
@@ -32,6 +33,7 @@ export default function Home() {
 
   return (
     <div>
+      <FallingBows />
       <Head>
         <title>Tia B Laços | Artesanais e Feitos com Amor</title>
         <meta name="description" content="Venda de laços artesanais personalizados. Encomende já o seu!" />

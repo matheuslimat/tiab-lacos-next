@@ -1,0 +1,17 @@
+.backgroundContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1; /* Coloca a animação atrás de todo o conteúdo */
+  pointer-events: none; /* Permite que os cliques "atravessem" a animação */
+}
+
+.bow {
+  position: absolute;
+  color: #FFDAB9; /* Cor que combina com o header */
+  opacity: 0.3; /* Deixa os laços opacos */
+  font-size: 24px;
+}
