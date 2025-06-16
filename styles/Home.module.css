@@ -1,0 +1,68 @@
+.main {
+  text-align: center;
+}
+
+/* Header */
+.header {
+  background-color: #FFDAB9;
+  padding: 40px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.header p {
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
+/* Seção de Produtos */
+.productsSection {
+  padding: 60px 20px;
+}
+
+.productsSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card do Produto (será estilizado no componente) */
+
+/* Seção de Encomenda (CTA) */
+.ctaSection {
+  background-color: #FFDAB9;
+  padding: 60px 20px;
+  margin-top: 40px;
+}
+
+.ctaSection h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.ctaSection p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+}
+
+/* Botão (estilizado no componente para reuso) */
+
+/* Footer */
+.footer {
+  background-color: #424242;
+  color: #FFFFFF;
+  padding: 20px;
+  margin-top: 0;
+}
