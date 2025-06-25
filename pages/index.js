@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css';
 import ProductCard from '../components/ProductCard';
 import FallingBows from '../components/FallingBows';
 import IntroAnimation from '../components/IntroAnimation';
+import BackgroundVideo from '../components/BackgroundVideo';
 
 const products = [
     { id: 2, name: 'Laço Charme de Poá', price: 25.00, imageUrl: '/images/laco_modelo_2.jpeg' },
@@ -21,7 +22,8 @@ export default function Home() {
 
     return (
         <div>
-            <FallingBows />
+            <BackgroundVideo />
+            {/* <FallingBows /> */}
             <Head>
                 <title>Tia B Laços | Artesanais e Feitos com Amor</title>
                 <meta name="description" content="Venda de laços artesanais personalizados. Encomende já o seu!" />

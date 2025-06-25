@@ -1,0 +1,16 @@
+.videoContainer {
+  position: fixed; /* Fixa o vídeo na tela para que não role com o conteúdo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* 100% da altura da tela */
+  z-index: -1; /* Coloca o vídeo atrás de todo o outro conteúdo */
+  opacity: 0.2; /* A opacidade desejada. Ajuste entre 0.0 e 1.0 */
+  overflow: hidden; /* Garante que nada do vídeo "vaze" */
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que o vídeo cubra todo o container sem distorcer, cortando as sobras */
+}
