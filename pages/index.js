@@ -54,6 +54,15 @@ export default function Home() {
                         </ul>
                     </nav>
                     <div className={styles.heroSection}>
+                        {/* Elementos caindo de fundo */}
+                        <div className={styles.fallingElements}>
+                            <span className={styles.falling1}>🎀</span>
+                            <span className={styles.falling2}>💕</span>
+                            <span className={styles.falling3}>⭐</span>
+                            <span className={styles.falling4}>🌺</span>
+                            <span className={styles.falling5}>💝</span>
+                        </div>
+                        
                         <h2>Laços Artesanais Únicos</h2>
                         <p>Cada peça é criada com carinho especial para você</p>
                         <motion.button 
