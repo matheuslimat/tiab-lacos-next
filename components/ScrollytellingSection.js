@@ -2,6 +2,64 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import styles from './ScrollytellingSection.module.css';
 
+// Hook para efeito de máquina de escrever
+const useTypewriter = (text, speed = 50, isActive = false) => {
+  const [displayText, setDisplayText] = useState('');
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    if (!isActive) {
+      setDisplayText('');
+      setIsComplete(false);
+      return;
+    }
+
+    let index = 0;
+    setDisplayText('');
+    setIsComplete(false);
+
+    const timer = setInterval(() => {
+      if (index < text.length) {
+        setDisplayText(text.slice(0, index + 1));
+        index++;
+      } else {
+        setIsComplete(true);
+        clearInterval(timer);
+      }
+    }, speed);
+
+    return () => clearInterval(timer);
+  }, [text, speed, isActive]);
+
+  return { displayText, isComplete };
+};
+
+// Componente de texto com efeito máquina de escrever
+const TypewriterText = ({ text, className }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const { displayText, isComplete } = useTypewriter(text, 30, isVisible);
+  
+  return (
+    <motion.p 
+      className={className}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ 
+        opacity: 1, 
+        y: 0,
+        transition: { delay: 0.6, duration: 0.8 }
+      }}
+      onViewportEnter={() => setIsVisible(true)}
+      onViewportLeave={() => setIsVisible(false)}
+      viewport={{ once: false, amount: 0.3 }}
+    >
+      {displayText}
+      {isVisible && !isComplete && (
+        <span className={styles.cursor}>|</span>
+      )}
+    </motion.p>
+  );
+};
+
 const ScrollytellingSection = () => {
   const [activeSection, setActiveSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -74,6 +132,15 @@ const ScrollytellingSection = () => {
       color: '#FFD700'
     }
   ];
+
+  // Create individual section progress transforms
+  const section0Progress = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+  const section1Progress = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  const section2Progress = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
+  const section3Progress = useTransform(scrollYProgress, [0.6, 0.8], [0, 1]);
+  const section4Progress = useTransform(scrollYProgress, [0.8, 1], [0, 1]);
+  
+  const sectionProgressTransforms = [section0Progress, section1Progress, section2Progress, section3Progress, section4Progress];
 
   return (
     <div className={styles.scrollyContainer}>
@@ -149,11 +216,7 @@ const ScrollytellingSection = () => {
       {/* Enhanced Story Content with Advanced Animations */}
       <div className={styles.storyContainer}>
         {storySteps.map((step, index) => {
-          const sectionProgress = useTransform(
-            scrollYProgress,
-            [index / storySteps.length, (index + 1) / storySteps.length],
-            [0, 1]
-          );
+          const sectionProgress = sectionProgressTransforms[index];
           
           return (
             <motion.div
@@ -224,17 +287,10 @@ const ScrollytellingSection = () => {
                   {step.title}
                 </motion.h2>
                 
-                <motion.p 
+                <TypewriterText 
+                  text={step.text}
                   className={styles.storyText}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { delay: 0.6, duration: 0.8 }
-                  }}
-                >
-                  {step.text}
-                </motion.p>
+                />
               </motion.div>
 
               {/* Enhanced Interactive Bow Element */}
