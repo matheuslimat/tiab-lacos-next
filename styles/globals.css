@@ -1,24 +1,115 @@
-/* Adicionando as fontes do Google aqui */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+/* Fontes modernas e elegantes */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+/* Variáveis CSS para paleta de cores moderna */
+:root {
+  /* Cores primárias - tons rosé e nude modernos */
+  --primary-rose: #F8E8E8;
+  --primary-blush: #F5D5D0;
+  --primary-mauve: #E8B4CB;
+  --primary-dusty-rose: #D4A5A5;
+  
+  /* Cores secundárias - tons terrosos e neutros */
+  --secondary-cream: #FBF7F4;
+  --secondary-sage: #B8C5B8;
+  --secondary-lavender: #E6E0F8;
+  --secondary-pearl: #F0F0F0;
+  
+  /* Cores de destaque */
+  --accent-gold: #D4AF37;
+  --accent-coral: #FF7F7F;
+  --accent-mint: #A8E6CF;
+  
+  /* Tons neutros modernos */
+  --neutral-dark: #2C2C2C;
+  --neutral-medium: #6B6B6B;
+  --neutral-light: #F8F8F8;
+  --neutral-white: #FFFFFF;
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, var(--primary-rose) 0%, var(--primary-blush) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-cream) 0%, var(--secondary-pearl) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--accent-coral) 0%, var(--primary-mauve) 100%);
+  
+  /* Sombras modernas */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-strong: 0 15px 40px rgba(0, 0, 0, 0.15);
+  
+  /* Border radius */
+  --radius-small: 12px;
+  --radius-medium: 20px;
+  --radius-large: 30px;
+}
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Lato', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  color: #424242;
+  color: var(--neutral-dark);
+  background: var(--gradient-secondary);
+  line-height: 1.6;
+  font-weight: 400;
+  scroll-behavior: smooth;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-coral);
 }
 
 * {
   box-sizing: border-box;
 }
 
+/* Tipografia elegante */
 h1, h2, h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--neutral-dark);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Texto decorativo */
+.decorative-text {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-mauve);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dusty-rose);
 }

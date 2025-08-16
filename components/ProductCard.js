@@ -23,13 +23,15 @@ export default function ProductCard({ product }) {
       whileHover={{ scale: 1.05, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" }}
       transition={{ duration: 0.3 }}
     >
-      <Image
-        src={product.imageUrl}
-        alt={product.name}
-        width={300}
-        height={300}
-        className={styles.image}
-      />
+      <div className={styles.imageContainer}>
+        <Image
+          src={product.imageUrl}
+          alt={product.name}
+          width={300}
+          height={300}
+          className={styles.image}
+        />
+      </div>
       <div className={styles.info}>
         <h3>{product.name}</h3>
         <p className={styles.price}>{formatPrice(product.price)}</p>

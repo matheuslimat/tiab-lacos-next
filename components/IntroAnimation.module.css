@@ -1,49 +1,155 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, 
+    var(--primary-rose) 0%, 
+    var(--primary-blush) 50%, 
+    var(--primary-mauve) 100%);
+}
+
+/* Container de partículas flutuantes */
+.particlesContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  position: relative;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float 6s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--accent-gold);
+}
+
+.particle1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.particle2 {
+  top: 30%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.particle3 {
+  top: 60%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.particle4 {
+  top: 70%;
+  right: 25%;
+  animation-delay: 3s;
+}
+
+.particle5 {
+  top: 40%;
+  left: 80%;
+  animation-delay: 4s;
+}
+
+.particle6 {
+  top: 80%;
+  left: 60%;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
 }
 
 .svgContainer {
-  width: 100%;
-  max-width: 400px; /* Aumentei um pouco para o laço ficar mais imponente */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1; /* SVG fica na frente inicialmente */
+  position: relative;
+  max-width: 500px;
+  margin-bottom: 3rem;
+  z-index: 2;
+  filter: drop-shadow(0 10px 30px rgba(255, 127, 127, 0.3));
 }
 
 .svg {
   width: 100%;
   height: auto;
-  /* Removido o fill para usar o contorno (stroke) definido no componente */
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
 }
 
 .textContainer {
   position: relative;
-  z-index: 2; /* Texto fica na frente do SVG */
-  text-align: center;
-  color: #424242;
-  text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  max-width: 600px;
+  padding: 0 2rem;
 }
 
-.textContainer h1 {
-  font-size: 3.5rem;
-  margin: 0;
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
-.textContainer p {
-  font-size: 1.2rem;
-  margin-top: 10px;
+.subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--neutral-cream);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  line-height: 1.6;
+  opacity: 0.95;
 }
 
-@media (max-width: 600px) {
-  .textContainer h1 {
-    font-size: 2.5rem;
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+  
+  .svgContainer {
+    max-width: 350px;
+    margin-bottom: 2rem;
+  }
+  
+  .textContainer {
+    padding: 0 1rem;
+  }
+  
+  .particle {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .svgContainer {
+    max-width: 280px;
+  }
+  
+  .particle {
+    width: 4px;
+    height: 4px;
   }
 }

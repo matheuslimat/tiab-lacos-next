@@ -1,49 +1,199 @@
 .card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background: var(--neutral-white);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-soft);
   overflow: hidden;
   cursor: pointer;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(232, 180, 203, 0.2);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-strong);
+  border-color: var(--primary-mauve);
+}
+
+.card:hover::before {
+  opacity: 0.05;
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  height: 280px;
+  background: var(--gradient-secondary);
 }
 
 .image {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
 }
 
 .info {
-  padding: 20px;
+  padding: 24px;
+  position: relative;
+  z-index: 2;
+  background: var(--neutral-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .info h3 {
-  font-size: 1.5rem;
-  margin-top: 0;
-  color: #424242;
+  font-size: 1.4rem;
+  margin: 0 0 12px 0;
+  color: var(--neutral-dark);
+  font-weight: 600;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.card:hover .info h3 {
+  color: var(--primary-dusty-rose);
 }
 
 .price {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #4CAF50;
-  margin: 10px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-coral);
+  margin: 8px 0 20px 0;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price::before {
+  content: '✨';
+  font-size: 1rem;
+  opacity: 0.7;
 }
 
 .button {
-  background-color: #B2DFDB;
-  color: #424242;
+  background: var(--gradient-accent);
+  color: var(--neutral-white);
   border: none;
-  border-radius: 50px;
-  padding: 12px 25px;
-  font-size: 1rem;
-  font-weight: bold;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: inline-block;
-  margin-top: 15px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  width: auto;
+  min-width: 140px;
+  max-width: 180px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 15px rgba(255, 127, 127, 0.2);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
 }
 
 .button:hover {
-  background-color: #A5D6A7;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(186, 85, 211, 0.2);
+  background: linear-gradient(135deg, rgba(186, 85, 211, 0.6) 0%, rgba(221, 160, 221, 0.7) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.button:hover::before {
+  left: 100%;
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* Efeito de brilho sutil no card */
+.card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.card:hover::after {
+  opacity: 1;
+  animation: shimmer 1.5s ease-in-out;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .imageContainer {
+    height: 240px;
+  }
+  
+  .info {
+    padding: 20px;
+  }
+  
+  .info h3 {
+    font-size: 1.3rem;
+  }
+  
+  .price {
+    font-size: 1.4rem;
+  }
 }

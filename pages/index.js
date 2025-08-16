@@ -20,6 +20,14 @@ const products = [
 export default function Home() {
     const whatsappGeralLink = "https://wa.me/5521967280265?text=Olá!%20Gostaria%20de%20fazer%20uma%20encomenda%20de%20laços.";
 
+    const scrollToSection = (e, sectionId) => {
+        e.preventDefault();
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     return (
         <div>
             <BackgroundVideo />
@@ -31,72 +39,201 @@ export default function Home() {
             </Head>
 
             <main className={styles.main}>
-                {/* Header com a Animação */}
-                <header className={styles.header}>
-                    <IntroAnimation title="Laços da Benisse" subtitle="Feitos à mão com amor e carinho" />
+                {/* Header Tradicional */}
+                <header className={styles.traditionalHeader}>
+                    <nav className={styles.navbar}>
+                        <div className={styles.logo}>
+                            <h1>Laços da Benisse</h1>
+                            <span>Feitos à mão com amor</span>
+                        </div>
+                        <ul className={styles.navMenu}>
+                            <li><a href="#produtos" onClick={(e) => scrollToSection(e, 'produtos')}>Produtos</a></li>
+                            <li><a href="#sobre" onClick={(e) => scrollToSection(e, 'sobre')}>Sobre</a></li>
+                            <li><a href="#contato" onClick={(e) => scrollToSection(e, 'contato')}>Contato</a></li>
+                        </ul>
+                    </nav>
+                    <div className={styles.heroSection}>
+                        <h2>Laços Artesanais Únicos</h2>
+                        <p>Cada peça é criada com carinho especial para você</p>
+                        <motion.button 
+                            className={styles.scrollArrow}
+                            onClick={(e) => scrollToSection(e, 'produtos')}
+                            animate={{ y: [0, 10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            ↓
+                        </motion.button>
+                    </div>
                 </header>
 
                 {/* Seção de Produtos */}
-                <section className={styles.productsSection}>
-                    <h2>Nossos Modelos</h2>
+                <section id="produtos" className={styles.productsSection}>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ 
+                            duration: 0.8,
+                            type: "spring",
+                            stiffness: 100
+                        }}
+                    >
+                        Nossos Modelos ✨
+                    </motion.h2>
                     <motion.div
                         className={styles.productsGrid}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.1 }}
-                        variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+                        variants={{ 
+                            hidden: { opacity: 0 },
+                            visible: { 
+                                opacity: 1,
+                                transition: { 
+                                    staggerChildren: 0.15,
+                                    delayChildren: 0.2
+                                } 
+                            } 
+                        }}
                     >
-                        {products.map(product => (
-                            <ProductCard key={product.id} product={product} />
+                        {products.map((product, index) => (
+                            <motion.div
+                                key={product.id}
+                                variants={{
+                                    hidden: { 
+                                        opacity: 0, 
+                                        y: 60,
+                                        scale: 0.8,
+                                        rotateX: 45
+                                    },
+                                    visible: { 
+                                        opacity: 1, 
+                                        y: 0,
+                                        scale: 1,
+                                        rotateX: 0,
+                                        transition: {
+                                            duration: 0.8,
+                                            type: "spring",
+                                            stiffness: 100,
+                                            damping: 12
+                                        }
+                                    }
+                                }}
+                                whileHover={{
+                                    y: -10,
+                                    transition: { duration: 0.3 }
+                                }}
+                            >
+                                <ProductCard product={product} />
+                            </motion.div>
                         ))}
                     </motion.div>
                 </section>
 
                 <section className={styles.ctaSection}>
-                    <h2>Gostou de algum modelo?</h2>
-                    <p>Entre em contato pelo WhatsApp para personalizar cores, tamanhos e finalizar sua encomenda. Será um prazer criar um laço especial para você!</p>
-                    <motion.a 
-                      href={whatsappGeralLink}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className={`${styles.button} ${styles.ctaButton}`} // Usando uma classe CSS genérica de botão
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      // Animação para chamar atenção
-                      animate={{
-                        scale: [1, 1.05, 1],
-                        transition: {
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }
-                      }}
-                      style={{
-                        backgroundColor: '#B2DFDB',
-                        color: '#424242',
-                        border: 'none',
-                        borderRadius: '50px',
-                        padding: '15px 30px',
-                        fontSize: '1.1rem',
-                        fontWeight: 'bold',
-                        textTransform: 'uppercase',
-                        display: 'inline-block'
-                      }}
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
                     >
-                      Chamar no WhatsApp
-                    </motion.a>
+                        Gostou de algum modelo? ✨
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                        Entre em contato pelo WhatsApp para personalizar cores, tamanhos e finalizar sua encomenda. Será um prazer criar um laço especial para você!
+                    </motion.p>
+                    
+                    <motion.div className={styles.ctaButtonContainer}>
+                        <motion.a 
+                            href={whatsappGeralLink}
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className={styles.ctaButton}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ 
+                                duration: 0.8, 
+                                delay: 0.4,
+                                type: "spring",
+                                stiffness: 100
+                            }}
+                            whileHover={{ 
+                                scale: 1.05,
+                                boxShadow: "0 20px 40px rgba(255, 127, 127, 0.4)",
+                                transition: { duration: 0.3 }
+                            }}
+                            whileTap={{ 
+                                scale: 0.95,
+                                transition: { duration: 0.1 }
+                            }}
+                        >
+                            <motion.span 
+                                className={styles.buttonText}
+                                whileHover={{ x: -5 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                💬 Chamar no WhatsApp
+                            </motion.span>
+                            <motion.span 
+                                className={styles.buttonIcon}
+                                whileHover={{ x: 5, rotate: 15 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                →
+                            </motion.span>
+                        </motion.a>
+                        
+                        {/* Efeito de brilho animado */}
+                        <motion.div 
+                            className={styles.buttonGlow}
+                            animate={{
+                                opacity: [0.5, 1, 0.5],
+                                scale: [1, 1.1, 1]
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        />
+                    </motion.div>
                 </section>
 
                 {/* Seção Sobre Mim */}
                 <motion.section
+                    id="sobre"
                     className={styles.aboutSection}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 1 }}
                 >
                     <div className={styles.aboutContent}>
-                        <div className={styles.aboutImageContainer}>
+                        <motion.div 
+                            className={styles.aboutImageContainer}
+                            initial={{ opacity: 0, scale: 0.8, x: -100 }}
+                            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ 
+                                duration: 0.8,
+                                type: "spring",
+                                stiffness: 100,
+                                delay: 0.2
+                            }}
+                            whileHover={{
+                                scale: 1.05,
+                                rotate: 2,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                             <Image
                                 src="/images/foto_perfil.jpeg"
                                 alt="Foto da artesã dos laços"
@@ -104,21 +241,50 @@ export default function Home() {
                                 height={150}
                                 className={styles.aboutPhoto}
                             />
-                        </div>
-                        <div className={styles.aboutText}>
-                            <h2>Quem Faz</h2>
-                            <p>
+                        </motion.div>
+                        <motion.div 
+                            className={styles.aboutText}
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ 
+                                duration: 0.8,
+                                type: "spring",
+                                stiffness: 100,
+                                delay: 0.4
+                            }}
+                        >
+                            <motion.h2
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.6 }}
+                            >
+                                Quem Faz 💕
+                            </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.8 }}
+                            >
                                 Olá! Eu sou a Tia B, a artesã apaixonada por trás de cada laço. O que era um hobby se transformou em um sonho realizado.
-                            </p>
-                            <p>
+                            </motion.p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 1.0 }}
+                            >
                                 Cada laço é feito à mão com muito carinho, pensando no conforto e na alegria de quem vai usar. Obrigada por apoiar!
-                            </p>
-                        </div>
+                            </motion.p>
+                        </motion.div>
                     </div>
                 </motion.section>
 
                 {/* Seção de Contato e Mapa */}
                 <motion.section
+                    id="contato"
                     className={styles.contactSection}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
