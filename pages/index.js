@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 import FallingBows from '../components/FallingBows';
 import IntroAnimation from '../components/IntroAnimation';
 import BackgroundVideo from '../components/BackgroundVideo';
+import ScrollytellingSection from '../components/ScrollytellingSection';
 
 const products = [
     { id: 2, name: 'Laço Charme de Poá', price: 25.00, imageUrl: '/images/laco_modelo_2.jpeg' },
@@ -67,6 +68,9 @@ export default function Home() {
                         </motion.button>
                     </div>
                 </header>
+
+                {/* Scrollytelling Section - Nossa História */}
+                <ScrollytellingSection />
 
                 {/* Seção de Produtos */}
                 <section id="produtos" className={styles.productsSection}>

@@ -94,6 +94,55 @@
   text-align: center;
   padding: 60px 40px;
   position: relative;
+  overflow: hidden;
+}
+
+/* Animação do Laço de Fundo */
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 100px;
+  background: linear-gradient(45deg, rgba(232, 180, 203, 0.1), rgba(255, 192, 203, 0.15));
+  border-radius: 50px 50px 20px 20px;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: bowAnimation 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+.heroSection::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 90px;
+  background: linear-gradient(-45deg, rgba(221, 160, 221, 0.1), rgba(186, 85, 211, 0.12));
+  border-radius: 50px 50px 20px 20px;
+  transform: translate(-50%, -50%) rotate(180deg);
+  animation: bowAnimation 4s ease-in-out infinite reverse;
+  z-index: -1;
+}
+
+@keyframes bowAnimation {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(15deg) scale(1.1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.9);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(-15deg) scale(1.1);
+    opacity: 1;
+  }
 }
 
 .heroSection h2 {
@@ -266,7 +315,7 @@
   background: linear-gradient(135deg, var(--accent-coral) 0%, var(--primary-rose) 100%);
   color: white;
   text-decoration: none;
-  border-radius: var(--border-radius-full);
+  border-radius: 50px;
   font-family: var(--font-body);
   font-size: 1.1rem;
   font-weight: 600;
@@ -300,6 +349,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.ctaButton:hover .buttonText {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .buttonIcon {
@@ -307,6 +362,12 @@
   z-index: 2;
   font-size: 1.3rem;
   font-weight: bold;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.ctaButton:hover .buttonIcon {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Efeito de brilho de fundo */
